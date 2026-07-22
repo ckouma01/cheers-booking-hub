@@ -9,173 +9,119 @@ import { useState } from "react";
 
 const Contact = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Create mailto link
-    const mailtoLink = `mailto:therapis1995@icloud.com?subject=Contact from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
-    
-    // Open email client
+    const mailtoLink = `mailto:hello@magnificobarber.com?subject=Contact from ${encodeURIComponent(
+      formData.name,
+    )}&body=${encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
+    )}`;
     window.location.href = mailtoLink;
-    
-    toast({
-      title: "Opening Email Client",
-      description: "Your message will be sent via your email client.",
-    });
+    toast({ title: "Opening email client", description: "Your message will be sent via your email app." });
     setFormData({ name: "", email: "", message: "" });
   };
 
   const contactInfo = [
-    {
-      icon: Phone,
-      title: "Phone",
-      content: "Panagiotis: 99246036 | Therapon: 96557340 | Kwstas: 94041227",
-      link: "tel:99246036",
-    },
-    {
-      icon: Mail,
-      title: "Email",
-      content: "therapis1995@icloud.com",
-      link: "mailto:therapis1995@icloud.com",
-    },
-    {
-      icon: MapPin,
-      title: "Location",
-      content: "Αρχιεπισκόπου Μακαρίου Γ΄ 103, Λατσιά, Λευκωσία",
-      link: "https://maps.google.com",
-    },
+    { icon: Phone, title: "Phone", content: "+357 22 357010", link: "tel:+35722357010" },
+    { icon: Mail, title: "Email", content: "hello@magnificobarber.com", link: "mailto:hello@magnificobarber.com" },
+    { icon: MapPin, title: "Location", content: "39A Elia Papakyriakou, Makedonitissa, Nicosia, Cyprus", link: "https://maps.google.com/?q=39A+Elia+Papakyriakou+Makedonitissa+Nicosia" },
   ];
 
   const hours = [
-    { day: "Monday - Wednesday, Friday", time: "9:00 AM - 7:00 PM" },
-    { day: "Thursday", time: "9:00 AM - 2:00 PM" },
-    { day: "Saturday", time: "9:00 AM - 2:00 PM" },
-    { day: "Sunday", time: "CLOSED" },
+    { day: "Monday – Friday", time: "9:00 AM – 7:00 PM" },
+    { day: "Saturday", time: "9:00 AM – 3:00 PM" },
+    { day: "Sunday", time: "Closed" },
   ];
 
   return (
-    <div className="min-h-screen py-20 bg-primary relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-secondary to-black opacity-95" />
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-16 space-y-4">
-          <h1 className="text-5xl font-sans font-bold text-primary-foreground">Contact <span className="text-gold">Us</span></h1>
-          <div className="w-24 h-1 bg-gold mx-auto" />
-          <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto font-light">
-            Have questions or want to get in touch? We'd love to hear from you!
+    <div className="min-h-screen py-20 bg-background">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16 space-y-3">
+          <p className="text-xs tracking-[0.35em] uppercase text-muted-foreground">Get In Touch</p>
+          <h1 className="font-serif text-5xl md:text-6xl text-foreground">
+            Contact <em className="font-script">MAGNIFICO</em>
+          </h1>
+          <div className="w-12 h-px bg-foreground mx-auto" />
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            Questions, private bookings, or just a hello — we're happy to hear from you.
           </p>
         </div>
 
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8">
-          {/* Contact Form */}
-          <Card className="border-2 border-gold/20 hover:border-gold/50 transition-all bg-black/40 backdrop-blur-sm">
-            <CardContent className="pt-6">
-              <h2 className="text-2xl font-sans font-bold mb-6 text-primary-foreground">Send Us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
+          <Card className="border border-border bg-card">
+            <CardContent className="pt-8">
+              <h2 className="font-serif text-3xl mb-6 text-foreground">Send a Message</h2>
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-2">
-                  <Label htmlFor="contact-name">Name *</Label>
-                  <Input
-                    id="contact-name"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Your name"
-                  />
+                  <Label htmlFor="contact-name">Name</Label>
+                  <Input id="contact-name" required value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder="Your name" />
                 </div>
-
                 <div className="space-y-2">
-                  <Label htmlFor="contact-email">Email *</Label>
-                  <Input
-                    id="contact-email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="your@email.com"
-                  />
+                  <Label htmlFor="contact-email">Email</Label>
+                  <Input id="contact-email" type="email" required value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="your@email.com" />
                 </div>
-
                 <div className="space-y-2">
-                  <Label htmlFor="contact-message">Message *</Label>
-                  <Textarea
-                    id="contact-message"
-                    required
-                    value={formData.message}
+                  <Label htmlFor="contact-message">Message</Label>
+                  <Textarea id="contact-message" required value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="How can we help you?"
-                    rows={6}
-                  />
+                    placeholder="How can we help?" rows={6} />
                 </div>
-
-                <Button type="submit" variant="hero" size="lg" className="w-full">
+                <Button type="submit" size="lg" className="w-full tracking-[0.2em] uppercase text-xs">
                   Send Message
                 </Button>
               </form>
             </CardContent>
           </Card>
 
-          {/* Contact Information */}
           <div className="space-y-6">
-            {/* Contact Details */}
-            <Card className="border-2 border-gold/20 hover:border-gold/50 transition-all bg-black/40 backdrop-blur-sm">
-              <CardContent className="pt-6 space-y-6">
-                <h2 className="text-2xl font-sans font-bold text-primary-foreground">Get In Touch</h2>
+            <Card className="border border-border bg-card">
+              <CardContent className="pt-8 space-y-4">
+                <h2 className="font-serif text-3xl text-foreground">Visit the Shop</h2>
                 {contactInfo.map((info) => (
-                  <a
-                    key={info.title}
-                    href={info.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-start gap-4 p-4 rounded-lg hover:bg-secondary/50 transition-colors group"
-                  >
-                    <div className="w-12 h-12 bg-gold rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                      <info.icon className="w-6 h-6 text-black" />
-                    </div>
+                  <a key={info.title} href={info.link} target="_blank" rel="noopener noreferrer"
+                    className="flex items-start gap-4 p-3 -mx-3 rounded hover:bg-secondary/60 transition-colors">
+                    <info.icon className="w-5 h-5 mt-1 text-foreground flex-shrink-0" strokeWidth={1.5} />
                     <div>
-                      <h3 className="font-semibold text-primary-foreground mb-1">{info.title}</h3>
-                      <p className="text-primary-foreground/70">{info.content}</p>
+                      <h3 className="font-serif text-lg text-foreground">{info.title}</h3>
+                      <p className="text-sm text-muted-foreground">{info.content}</p>
                     </div>
                   </a>
                 ))}
               </CardContent>
             </Card>
 
-            {/* Hours */}
-            <Card className="border-2 border-gold/20 hover:border-gold/50 transition-all bg-black/40 backdrop-blur-sm">
-              <CardContent className="pt-6 space-y-4">
-                <div className="flex items-center gap-2 mb-4">
-                  <Clock className="w-6 h-6 text-gold" />
-                  <h2 className="text-2xl font-sans font-bold text-primary-foreground">Hours of Operation</h2>
+            <Card className="border border-border bg-card">
+              <CardContent className="pt-8 space-y-3">
+                <div className="flex items-center gap-2">
+                  <Clock className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                  <h2 className="font-serif text-3xl text-foreground">Hours</h2>
                 </div>
-                {hours.map((schedule) => (
-                  <div key={schedule.day} className="flex justify-between items-center py-2 border-b border-primary-foreground/10 last:border-0">
-                    <span className="font-semibold text-primary-foreground">{schedule.day}</span>
-                    <span className="text-primary-foreground/70">{schedule.time}</span>
+                {hours.map((s) => (
+                  <div key={s.day} className="flex justify-between py-2 border-b border-border last:border-0 text-sm">
+                    <span className="text-foreground">{s.day}</span>
+                    <span className="text-muted-foreground">{s.time}</span>
                   </div>
                 ))}
               </CardContent>
             </Card>
 
-            {/* Map Location */}
-            <Card className="border-2 border-gold/20 hover:border-gold/50 transition-all bg-black/40 backdrop-blur-sm">
-              <CardContent className="pt-6">
-                <h2 className="text-2xl font-sans font-bold text-primary-foreground mb-4">Find Us</h2>
-                <div className="w-full h-[400px] rounded-lg overflow-hidden">
-                  <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1004.0543489844458!2d33.38439852314166!3d35.10737252792991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14de191070b5d3a1%3A0x89b149005d66f662!2sCHEERS%20BARBERSHOP!5e1!3m2!1sel!2s!4v1762971432941!5m2!1sel!2s" 
-                    width="100%" 
-                    height="100%" 
-                    style={{ border: 0 }} 
-                    allowFullScreen 
-                    loading="lazy" 
+            <Card className="border border-border bg-card overflow-hidden">
+              <CardContent className="pt-8">
+                <h2 className="font-serif text-3xl text-foreground mb-4">Find Us</h2>
+                <div className="w-full h-[360px] rounded overflow-hidden border border-border">
+                  <iframe
+                    src="https://www.google.com/maps?q=39A+Elia+Papakyriakou+Makedonitissa+Nicosia+Cyprus&output=embed"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Cheers Barbershop Location"
+                    title="MAGNIFICO Barbershop Location"
                   />
                 </div>
               </CardContent>
