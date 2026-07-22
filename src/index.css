@@ -1,0 +1,268 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 98%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 0 0% 8%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 27 97% 50%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 27 97% 50%;
+
+    --radius: 0.5rem;
+    
+    /* Custom elegant barbershop tokens */
+    --gold: 27 97% 50%;
+    --gold-light: 27 97% 60%;
+    --gold-dark: 27 97% 40%;
+    --black: 0 0% 8%;
+    --white: 0 0% 100%;
+    --cream: 40 30% 96%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 5%), hsl(0 0% 12%));
+    --gradient-gold: linear-gradient(135deg, hsl(27 97% 50%), hsl(27 97% 40%));
+    --gradient-section: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 98%));
+    
+    /* Shadows */
+    --shadow-elegant: 0 4px 30px hsla(0 0% 0% / 0.1);
+    --shadow-gold: 0 0 40px hsla(27 97% 50% / 0.3);
+    
+    /* Transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 27 97% 50%;
+    --accent-foreground: 0 0% 8%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 27 97% 50%;
+    
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  @keyframes rotate-border {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes gold-glow {
+    0%, 100% {
+      text-shadow: 0 0 10px hsl(27 97% 50% / 0.5), 0 0 20px hsl(27 97% 50% / 0.3);
+    }
+    50% {
+      text-shadow: 0 0 20px hsl(27 97% 50% / 0.8), 0 0 30px hsl(27 97% 50% / 0.5), 0 0 40px hsl(27 97% 60% / 0.3);
+    }
+  }
+
+  .gold-glow-text {
+    color: hsl(27 97% 50%);
+    animation: gold-glow 3s ease-in-out infinite;
+  }
+
+  @keyframes handwrite {
+    0% { width: 0; }
+    100% { width: 100%; }
+  }
+
+  .handwrite-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    animation: handwrite 1.3s steps(40, end) forwards;
+  }
+
+  @keyframes silk-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes silk-breathe {
+    0%, 100% {
+      box-shadow: 0 0 0 1px hsl(27 97% 50% / 0.4), 0 0 20px hsl(27 97% 50% / 0.15);
+    }
+    50% {
+      box-shadow: 0 0 0 1px hsl(27 97% 50% / 0.7), 0 0 35px hsl(27 97% 50% / 0.35);
+    }
+  }
+
+  .premium-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 28px;
+    background:
+      linear-gradient(
+        110deg,
+        hsl(0 0% 8%) 0%,
+        hsl(0 0% 12%) 35%,
+        hsl(27 97% 50% / 0.18) 50%,
+        hsl(0 0% 12%) 65%,
+        hsl(0 0% 8%) 100%
+      );
+    background-size: 200% 100%;
+    background-position: -200% 0;
+    border: 1px solid hsl(27 97% 50% / 0.5);
+    border-radius: 12px;
+    color: hsl(0 0% 100%);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    animation:
+      silk-shimmer 6s ease-in-out infinite,
+      silk-breathe 4s ease-in-out infinite;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s ease;
+  }
+
+  .premium-button:hover {
+    transform: translateY(-2px);
+    border-color: hsl(27 97% 60%);
+    animation:
+      silk-shimmer 2.5s ease-in-out infinite,
+      silk-breathe 2s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  /* Button Animations */
+  .button-glow {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--accent) / 0.9) 100%);
+  }
+  
+  .button-glow::before {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+    transform: translateX(-100%) skewX(-15deg);
+    transition: transform 0.6s ease;
+  }
+  
+  .button-glow:hover::before {
+    transform: translateX(100%) skewX(-15deg);
+  }
+  
+  .button-glow::after {
+    content: '';
+    @apply absolute inset-0 rounded-md;
+    box-shadow: 
+      inset 0 1px 2px rgba(255, 255, 255, 0.3),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+      0 0 20px hsl(var(--accent) / 0.4);
+    pointer-events: none;
+  }
+  
+  .button-glow:hover::after {
+    box-shadow: 
+      inset 0 1px 3px rgba(255, 255, 255, 0.4),
+      inset 0 -1px 3px rgba(0, 0, 0, 0.3),
+      0 0 30px hsl(var(--accent) / 0.6),
+      0 5px 20px hsl(var(--accent) / 0.4);
+  }
+  
+  /* Card Hover Effects */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+  
+  /* Smooth Image Zoom */
+  .image-zoom {
+    @apply transition-transform duration-500 ease-out;
+  }
+  
+  .image-zoom:hover {
+    @apply scale-110;
+  }
+}
