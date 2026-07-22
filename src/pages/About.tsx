@@ -1,228 +1,85 @@
-import { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Instagram, Phone, Info } from "lucide-react";
-import theraponImg from "@/assets/therapon.png";
-import panagiotisImg from "@/assets/panagiotis.png";
-import kwstasImg from "@/assets/kwstas.jpg";
-import { triggerCheers } from "@/components/CheersAnimation";
-
-const barberSocials = {
-  Therapon: { instagram: "https://instagram.com/therapis27", phone: "+35796557340" },
-  Panagiotis: { instagram: "https://instagram.com/panagioths.chr", phone: "+35799246036" },
-  Kwstas: { instagram: "https://instagram.com/kwstas.lkss", phone: "+35794041227" },
-};
-
-const SocialIcons = ({ barber }: { barber: keyof typeof barberSocials }) => {
-  const { instagram, phone } = barberSocials[barber];
-  return (
-    <div className="absolute top-3 left-3 z-10 flex gap-2">
-      <a
-        href={instagram}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`${barber} Instagram`}
-        onClick={(e) => e.stopPropagation()}
-        className="w-9 h-9 rounded-full bg-black/60 backdrop-blur-sm border border-gold/60 flex items-center justify-center text-gold hover:bg-gold hover:text-black transition-all duration-300"
-      >
-        <Instagram size={16} />
-      </a>
-      <a
-        href={`tel:${phone}`}
-        aria-label={`Call ${barber}`}
-        onClick={(e) => e.stopPropagation()}
-        className="w-9 h-9 rounded-full bg-black/60 backdrop-blur-sm border border-gold/60 flex items-center justify-center text-gold hover:bg-gold hover:text-black transition-all duration-300"
-      >
-        <Phone size={16} />
-      </a>
-      {barber === "Panagiotis" && (
-        <Link
-          to="/panagiotis-card"
-          aria-label="Panagiotis info card"
-          onClick={(e) => e.stopPropagation()}
-          className="w-9 h-9 rounded-full bg-black/60 backdrop-blur-sm border border-gold/60 flex items-center justify-center text-gold hover:bg-gold hover:text-black transition-all duration-300"
-        >
-          <Info size={16} />
-        </Link>
-      )}
-    </div>
-  );
-};
+import { Scissors } from "lucide-react";
 
 const About = () => {
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const [selectedBarber, setSelectedBarber] = useState("");
-  const kwstasRef = useRef<HTMLDivElement>(null);
-  const location = useLocation();
-
-  const bookingUrls = {
-    Therapon: "https://therapis27.setmore.com/book?step=time-slot&products=sba9048736151f81ca2874b726a1ea9f116c7acae&type=service&staff=rb2061606986986400&staffSelected=true",
-    Panagiotis: "https://therapis27.setmore.com/book?step=time-slot&products=aa7a5649-cf28-416d-9a06-29a5015bf9db&type=service&staff=L7vxoUGj0ZTDOvSu179MxJiP4cQyJI0t&staffSelected=true",
-    Kwstas: "https://therapis27.setmore.com/services/f858af00-4ccf-4a29-8576-10af07b32eb0"
-  };
-
-  // Scroll to Kwstas card when navigating with scrollTo=kwstas
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    if (params.get('scrollTo') === 'kwstas' && kwstasRef.current) {
-      setTimeout(() => {
-        kwstasRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 300);
-    }
-  }, [location.search]);
-
-  const handleBooking = (barberName: string) => {
-    setSelectedBarber(barberName);
-    triggerCheers();
-    setTimeout(() => setIsBookingOpen(true), 1500);
-  };
-
-  const barberImages: Record<string, string> = {
-    Therapon: theraponImg,
-    Panagiotis: panagiotisImg,
-    Kwstas: kwstasImg,
-  };
-
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-20 bg-primary text-primary-foreground overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-secondary to-black opacity-95" />
-        <div className="absolute inset-0 opacity-10 hidden md:block">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-96 md:h-96 bg-gold rounded-full blur-[60px] md:blur-[100px]" style={{ animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }} />
+    <div className="min-h-screen bg-background">
+      {/* Hero */}
+      <section className="border-b border-border">
+        <div className="container mx-auto px-6 py-24 text-center max-w-3xl space-y-4">
+          <p className="text-xs tracking-[0.35em] uppercase text-muted-foreground">The Shop</p>
+          <h1 className="font-serif text-5xl md:text-7xl text-foreground">
+            Inside <em className="font-script">MAGNIFICO</em>
+          </h1>
+          <div className="w-12 h-px bg-foreground mx-auto" />
+          <p className="text-muted-foreground leading-relaxed">
+            MAGNIFICO Barbershop lives quietly on Elia Papakyriakou in Makedonitissa, Nicosia.
+            A short list of services. A carefully arranged room. Music low, mirrors clean,
+            and a chair reserved for you.
+          </p>
         </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
-            <h1 className="text-5xl font-sans font-bold text-primary-foreground">Select your <span className="text-gold">Barber</span></h1>
-            <div className="w-24 h-1 bg-gold mx-auto" />
-            <p className="text-xl text-primary-foreground/90 font-light">
-              Expert barbers dedicated to making you <span className="text-gold md:gold-glow-text">look</span> and <span className="text-gold md:gold-glow-text">feel</span> your <span className="text-gold md:gold-glow-text">best</span>.
+      </section>
+
+      {/* Philosophy */}
+      <section className="py-24 border-b border-border">
+        <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 max-w-5xl">
+          <div className="space-y-4">
+            <p className="text-xs tracking-[0.35em] uppercase text-muted-foreground">Our Craft</p>
+            <h2 className="font-serif text-4xl text-foreground">
+              Old-world technique. <em className="font-script">Modern taste.</em>
+            </h2>
+          </div>
+          <div className="space-y-4 text-muted-foreground leading-relaxed">
+            <p>
+              Every appointment at MAGNIFICO begins with a proper consultation. We take
+              time to understand your hair, your face, and how you want to move through
+              the world.
+            </p>
+            <p>
+              From the classic scissor-over-comb to the hot-towel straight-razor shave,
+              every service is delivered with attention to the small details that make a
+              cut feel truly your own.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Team Members Section */}
-      <section className="py-20 bg-primary relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-secondary to-black opacity-95" />
-        {/* Glowing Gold Effects - Hidden on mobile for performance */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none hidden md:block">
-          <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-96 md:h-96 bg-gold rounded-full blur-[60px] md:blur-[120px]" />
-          <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-96 md:h-96 bg-gold rounded-full blur-[60px] md:blur-[120px]" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Therapon */}
-            <Card className="border-2 border-gold/50 hover:border-gold transition-all duration-300 overflow-hidden md:hover:shadow-2xl shadow-gold/20 md:shadow-[0_0_30px_rgba(212,175,55,0.3)] md:hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] bg-card md:animate-slideInLeft">
-              <CardContent className="p-0">
-                <div className="relative aspect-square overflow-hidden">
-                  <SocialIcons barber="Therapon" />
-                  <img 
-                    src={theraponImg} 
-                    alt="Therapon Constantinou - Master Barber" 
-                    className="w-full h-full object-cover md:image-zoom"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="p-6 space-y-4 text-center">
-                  <h3 className="text-xl font-sans font-bold text-foreground whitespace-nowrap">Therapon Constantinou</h3>
-                  <p className="text-muted-foreground font-light"><span className="text-gold md:gold-glow-text">Owner</span> ◦ <span className="text-gold md:gold-glow-text">Master</span> Barber</p>
-                  <button 
-                    className="premium-button w-full"
-                    onClick={() => handleBooking("Therapon")}
-                  >
-                    Book with Therapon
-                  </button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Panagiotis */}
-            <Card className="border-2 border-gold/50 hover:border-gold transition-all duration-300 overflow-hidden md:hover:shadow-2xl shadow-gold/20 md:shadow-[0_0_30px_rgba(212,175,55,0.3)] md:hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] bg-card">
-              <CardContent className="p-0">
-                <div className="relative aspect-square overflow-hidden">
-                  <SocialIcons barber="Panagiotis" />
-                  <img 
-                    src={panagiotisImg} 
-                    alt="Panagiotis Charalambous - Master Barber" 
-                    className="w-full h-full object-cover md:image-zoom"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="p-6 space-y-4 text-center">
-                  <h3 className="text-xl font-sans font-bold text-foreground whitespace-nowrap">Panagiotis Charalambous</h3>
-                  <p className="text-muted-foreground font-light"><span className="text-gold md:gold-glow-text">Master</span> Barber</p>
-                  <button 
-                    className="premium-button w-full"
-                    onClick={() => handleBooking("Panagiotis")}
-                  >
-                    Book with Panagiotis
-                  </button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Kwstas */}
-            <Card 
-              ref={kwstasRef}
-              className="border-2 border-gold/50 hover:border-gold transition-all duration-300 overflow-hidden md:hover:shadow-2xl shadow-gold/20 md:shadow-[0_0_30px_rgba(212,175,55,0.3)] md:hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] bg-card"
-            >
-              <CardContent className="p-0">
-                <div className="relative aspect-square overflow-hidden">
-                  <SocialIcons barber="Kwstas" />
-                  <img 
-                    src={kwstasImg} 
-                    alt="Kwstas Liakos - Master Barber" 
-                    className="w-full h-full object-cover md:image-zoom"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="p-6 space-y-4 text-center">
-                  <h3 className="text-xl font-sans font-bold text-foreground whitespace-nowrap">Kwstas Liakos</h3>
-                  <p className="text-muted-foreground font-light"><span className="text-gold md:gold-glow-text">Master</span> Barber</p>
-                  <button 
-                    className="premium-button w-full"
-                    onClick={() => handleBooking("Kwstas")}
-                  >
-                    Book with Kwstas
-                  </button>
-                </div>
-              </CardContent>
-            </Card>
+      {/* Values grid */}
+      <section className="py-24 border-b border-border bg-secondary/40">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="grid md:grid-cols-3 gap-px bg-border border border-border">
+            {[
+              { title: "Consultation", copy: "Every chair session starts with a real conversation about the look." },
+              { title: "Precision", copy: "Sharp lines, considered shapes, and finish work you can feel." },
+              { title: "Ritual", copy: "Hot towels, straight razors, and a moment that is entirely yours." },
+            ].map((v) => (
+              <div key={v.title} className="bg-background p-10 space-y-3 text-center">
+                <Scissors className="w-6 h-6 mx-auto text-foreground" strokeWidth={1.5} />
+                <h3 className="font-serif text-2xl text-foreground">{v.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{v.copy}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Booking Dialog */}
-      <Dialog open={isBookingOpen} onOpenChange={setIsBookingOpen}>
-        <DialogContent className="max-w-4xl h-[85vh] p-0 flex flex-col overflow-hidden">
-          {/* Faint barber portrait background */}
-          {selectedBarber && barberImages[selectedBarber] && (
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 bg-center bg-cover opacity-15"
-              style={{ backgroundImage: `url(${barberImages[selectedBarber]})` }}
-            />
-          )}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/40 via-background/10 to-background/40" />
-          <DialogHeader className="px-6 pt-6 pb-2 shrink-0 relative z-10">
-            <DialogTitle>Book Appointment with {selectedBarber}</DialogTitle>
-            <DialogDescription className="sr-only">
-              Schedule your appointment with {selectedBarber}
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex-1 px-6 pb-6 min-h-0 relative z-10">
-            <iframe
-              src={bookingUrls[selectedBarber as keyof typeof bookingUrls]}
-              className="w-full h-full border-0 rounded bg-transparent"
-              title={`Book with ${selectedBarber}`}
-              allowTransparency
-            />
-          </div>
-        </DialogContent>
-      </Dialog>
+      {/* CTA */}
+      <section className="py-24">
+        <div className="container mx-auto px-6 text-center space-y-6 max-w-2xl">
+          <h2 className="font-serif text-4xl md:text-5xl text-foreground">
+            Come sit in the chair.
+          </h2>
+          <p className="text-muted-foreground">
+            Reserve a time — we'll take care of the rest.
+          </p>
+          <Link to="/book">
+            <Button size="lg" className="tracking-[0.2em] uppercase text-xs px-8">
+              Book Appointment
+            </Button>
+          </Link>
+        </div>
+      </section>
     </div>
   );
 };

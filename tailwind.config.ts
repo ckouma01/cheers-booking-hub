@@ -8,9 +8,7 @@ export default {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
+      screens: { "2xl": "1400px" },
     },
     extend: {
       colors: {
@@ -47,11 +45,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Repurposed to ink so legacy `text-gold` / `bg-gold` / `border-gold` all read as ink accent
         gold: {
           DEFAULT: "hsl(var(--gold))",
           light: "hsl(var(--gold-light))",
           dark: "hsl(var(--gold-dark))",
         },
+        ink: "hsl(var(--ink))",
+        paper: "hsl(var(--paper))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -64,9 +65,9 @@ export default {
         },
       },
       fontFamily: {
-        serif: ['Playfair Display', 'serif'],
-        script: ['Great Vibes', 'cursive'],
-        sans: ['Montserrat', 'sans-serif'],
+        serif: ["Instrument Serif", "serif"],
+        script: ["Instrument Serif", "serif"],
+        sans: ["Work Sans", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -75,96 +76,32 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
         slideInLeft: {
-          "0%": {
-            transform: "translateX(-100%)",
-            opacity: "0",
-          },
-          "100%": {
-            transform: "translateX(0)",
-            opacity: "1",
-          },
+          "0%": { transform: "translateX(-40px)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
         },
         slideInRight: {
-          "0%": {
-            transform: "translateX(100%)",
-            opacity: "0",
-          },
-          "100%": {
-            transform: "translateX(0)",
-            opacity: "1",
-          },
+          "0%": { transform: "translateX(40px)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
         },
         levitate: {
-          "0%, 100%": {
-            transform: "translateY(0)",
-          },
-          "50%": {
-            transform: "translateY(-15px)",
-          },
-        },
-        handwrite: {
-          "0%": {
-            strokeDashoffset: "1000",
-            opacity: "0",
-          },
-          "50%": {
-            strokeDashoffset: "0",
-            opacity: "1",
-          },
-          "100%": {
-            strokeDashoffset: "0",
-            opacity: "1",
-          },
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
         },
         revealText: {
-          "0%": {
-            clipPath: "inset(0 100% 0 0)",
-            opacity: "0",
-          },
-          "100%": {
-            clipPath: "inset(0 0 0 0)",
-            opacity: "1",
-          },
+          "0%": { clipPath: "inset(0 100% 0 0)", opacity: "0" },
+          "100%": { clipPath: "inset(0 0 0 0)", opacity: "1" },
         },
         starShine: {
-          "0%": {
-            filter: "brightness(1) drop-shadow(0 0 0px transparent)",
-            transform: "scale(1)",
-          },
-          "50%": {
-            filter: "brightness(1.8) drop-shadow(0 0 8px hsl(var(--gold)))",
-            transform: "scale(1.15)",
-          },
-          "100%": {
-            filter: "brightness(1) drop-shadow(0 0 0px transparent)",
-            transform: "scale(1)",
-          },
-        },
-        weddingShine: {
-          "0%, 100%": {
-            textShadow: "0 0 0px hsl(var(--gold) / 0)",
-            color: "hsl(var(--gold))",
-          },
-          "50%": {
-            textShadow: "0 0 12px hsl(var(--gold) / 0.9), 0 0 24px hsl(var(--gold) / 0.5)",
-            color: "hsl(var(--gold-light, var(--gold)))",
-          },
+          "0%, 100%": { filter: "brightness(1)", transform: "scale(1)" },
+          "50%": { filter: "brightness(1.4)", transform: "scale(1.12)" },
         },
       },
       animation: {
@@ -173,10 +110,8 @@ export default {
         slideInLeft: "slideInLeft 0.6s ease-out forwards",
         slideInRight: "slideInRight 0.6s ease-out forwards",
         levitate: "levitate 6s ease-in-out infinite",
-        handwrite: "handwrite 2.5s ease-out forwards",
-        revealText: "revealText 2.5s ease-out 0.5s forwards",
+        revealText: "revealText 2s ease-out forwards",
         starShine: "starShine 0.6s ease-in-out forwards",
-        weddingShine: "weddingShine 2.2s ease-in-out infinite",
       },
     },
   },
