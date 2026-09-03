@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Scissors } from "lucide-react";
+import { Scissors, Instagram, Phone } from "lucide-react";
+
+const team = [
+  { name: "Barber One", role: "Owner ◦ Master Barber", image: "/placeholder.svg", instagram: "https://www.instagram.com/magnifico_barber/", phone: "+35722357010" },
+  { name: "Barber Two", role: "Master Barber", image: "/placeholder.svg", instagram: "https://www.instagram.com/magnifico_barber/", phone: "+35722357010" },
+  { name: "Barber Three", role: "Barber", image: "/placeholder.svg", instagram: "https://www.instagram.com/magnifico_barber/", phone: "+35722357010" },
+];
+
 
 const About = () => {
   return (
