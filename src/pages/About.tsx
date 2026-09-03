@@ -64,8 +64,48 @@ const About = () => {
         </div>
       </section>
 
+      {/* Our Team */}
+      <section className="py-24 border-b border-border">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="text-center mb-14 space-y-3">
+            <p className="text-xs tracking-[0.35em] uppercase text-muted-foreground">The Chairs</p>
+            <h2 className="font-serif text-4xl md:text-5xl text-foreground">Our Team</h2>
+            <div className="w-12 h-px bg-foreground mx-auto" />
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              The hands behind every MAGNIFICO cut.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
+            {[
+              { name: "Barber One", role: "Master Barber" },
+              { name: "Barber Two", role: "Barber & Shave Specialist" },
+              { name: "Barber Three", role: "Barber" },
+            ].map((member) => (
+              <div key={member.name} className="text-center space-y-4">
+                <div className="overflow-hidden border border-border bg-secondary/40">
+                  <img
+                    src="/placeholder.svg"
+                    alt={`${member.name}, ${member.role} at MAGNIFICO Barbershop`}
+                    className="w-full h-72 object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-serif text-2xl text-foreground">{member.name}</h3>
+                  <p className="text-xs tracking-[0.25em] uppercase text-muted-foreground">
+                    {member.role}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-24">
+
         <div className="container mx-auto px-6 text-center space-y-6 max-w-2xl">
           <h2 className="font-serif text-4xl md:text-5xl text-foreground">
             Come sit in the chair.
