@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
+import OurTeam from "./pages/OurTeam";
 import BookAppointment from "./pages/BookAppointment";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -22,6 +23,7 @@ const AppShell = () => (
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/team" element={<OurTeam />} />
         <Route path="/book" element={<BookAppointment />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
