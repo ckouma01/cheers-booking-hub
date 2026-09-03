@@ -1,16 +1,11 @@
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import gallery1 from "@/assets/gallery-1.png";
-import gallery2 from "@/assets/gallery-2.png";
-import gallery3 from "@/assets/gallery-3.png";
-import gallery4 from "@/assets/gallery-4.png";
-
 const galleryImages = [
-  { src: gallery1, alt: "Barber at work at MAGNIFICO" },
-  { src: gallery2, alt: "MAGNIFICO shop interior" },
-  { src: gallery3, alt: "Styling in progress" },
-  { src: gallery4, alt: "MAGNIFICO Barbershop detail" },
+  { src: "/placeholder.svg", alt: "MAGNIFICO Barbershop gallery placeholder" },
+  { src: "/placeholder.svg", alt: "MAGNIFICO Barbershop gallery placeholder" },
+  { src: "/placeholder.svg", alt: "MAGNIFICO Barbershop gallery placeholder" },
+  { src: "/placeholder.svg", alt: "MAGNIFICO Barbershop gallery placeholder" },
 ];
 
 const Gallery = () => {
