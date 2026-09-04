@@ -1,5 +1,5 @@
 const BookAppointment = () => {
-  const bookingUrl = "https://kyritsis24.setmore.com/";
+  const bookingUrl = "https://magnifico.setmore.com/";
 
   return (
     <div className="min-h-screen bg-background py-16">
