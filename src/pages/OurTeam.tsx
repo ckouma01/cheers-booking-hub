@@ -58,6 +58,7 @@ const BarberPoleStripe = ({ className = "" }: { className?: string }) => (
 
 const OurTeam = () => {
   const [visibleCards, setVisibleCards] = useState<Record<string, boolean>>({});
+  const [activeBarber, setActiveBarber] = useState<(typeof team)[number] | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -90,13 +91,13 @@ const OurTeam = () => {
         </div>
 
         <div className="container mx-auto px-6 py-28 text-center max-w-3xl relative z-10">
-          <p className="text-xs tracking-[0.4em] uppercase text-muted-foreground mb-5">
+          <p className="text-xs tracking-[0.4em] uppercase text-ember mb-5">
             The Craftsmen
           </p>
           <h1 className="font-serif text-5xl md:text-7xl text-foreground leading-[0.95]">
             Our <em className="font-script">Team</em>
           </h1>
-          <div className="w-16 h-px bg-foreground/60 mx-auto mt-7 mb-6" />
+          <div className="w-16 h-px bg-ember mx-auto mt-7 mb-6" />
           <p className="text-muted-foreground leading-relaxed max-w-xl mx-auto">
             Two master barbers. One standard: precision, patience, and a cut
             that feels as good as it looks.
@@ -168,7 +169,7 @@ const OurTeam = () => {
                 {/* Card body */}
                 <div className="p-7 space-y-6 flex-1 flex flex-col relative">
                   <div className="space-y-2">
-                    <div className="flex items-center gap-3 text-[hsl(37_22%_96%)/70]">
+                    <div className="flex items-center gap-3 text-ember-light">
                       <Scissors className="w-4 h-4" strokeWidth={1.5} />
                       <span className="text-[10px] tracking-[0.35em] uppercase">
                         {member.role}
@@ -180,14 +181,13 @@ const OurTeam = () => {
                   </div>
 
                   <div className="mt-auto pt-4">
-                    <a
-                      href={member.bookingUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="premium-button w-full bg-[hsl(37_22%_96%)] text-[hsl(0_0%_18%)] border-[hsl(37_22%_96%)] hover:bg-transparent hover:text-[hsl(37_22%_96%)]"
+                    <button
+                      type="button"
+                      onClick={() => setActiveBarber(member)}
+                      className="premium-button w-full bg-ember text-ember-foreground border-ember hover:bg-transparent hover:text-ember"
                     >
                       Book with {member.name.split(" ")[0]}
-                    </a>
+                    </button>
                   </div>
                 </div>
 
@@ -217,12 +217,28 @@ const OurTeam = () => {
             href="https://magnifico.setmore.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="premium-button"
+            className="premium-button bg-ember text-ember-foreground border-ember hover:bg-transparent hover:text-ember"
           >
             Book Appointment
           </a>
         </div>
       </section>
+      <Dialog open={!!activeBarber} onOpenChange={(open) => !open && setActiveBarber(null)}>
+        <DialogContent className="max-w-3xl p-0 overflow-hidden">
+          <DialogHeader className="px-6 pt-6 pb-4">
+            <DialogTitle className="font-serif text-2xl">
+              Book with {activeBarber?.name}
+            </DialogTitle>
+          </DialogHeader>
+          {activeBarber && (
+            <iframe
+              src={activeBarber.bookingUrl}
+              title={`Book with ${activeBarber.name}`}
+              className="w-full h-[70vh] border-0"
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
