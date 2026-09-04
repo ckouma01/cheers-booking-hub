@@ -32,7 +32,7 @@ const Home = () => {
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className="w-4 h-4 text-foreground fill-foreground animate-starShine"
+                    className="w-4 h-4 text-ember fill-ember animate-starShine"
                     style={{ animationDelay: `${0.4 + i * 0.15}s` }}
                     viewBox="0 0 20 20"
                   >
@@ -50,7 +50,7 @@ const Home = () => {
               Magnificent Barbering.
             </p>
 
-            <div className="w-16 h-px bg-foreground mx-auto" />
+            <div className="w-16 h-px bg-ember mx-auto" />
 
             <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
               A refined shop in Nicosia dedicated to classic technique, hot-towel rituals,
@@ -58,8 +58,8 @@ const Home = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
-              <Link to="/book">
-                <Button size="lg" className="w-full sm:w-auto tracking-[0.2em] uppercase text-xs px-8">
+              <Link to="/team">
+                <Button size="lg" className="w-full sm:w-auto tracking-[0.2em] uppercase text-xs px-8 bg-ember text-ember-foreground hover:bg-ember-dark border border-ember">
                   Book Appointment
                 </Button>
               </Link>
@@ -84,7 +84,7 @@ const Home = () => {
           <div className="text-center mb-16 space-y-3">
             <p className="text-xs tracking-[0.35em] uppercase text-muted-foreground">Services</p>
             <h2 className="font-serif text-4xl md:text-5xl text-foreground">The Menu</h2>
-            <div className="w-12 h-px bg-foreground mx-auto" />
+            <div className="w-12 h-px bg-ember mx-auto" />
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border max-w-6xl mx-auto border border-border">
@@ -96,7 +96,7 @@ const Home = () => {
                 }`}
                 style={{ transitionDelay: `${index * 120}ms` }}
               >
-                <service.icon className="w-6 h-6 mx-auto text-foreground" strokeWidth={1.5} />
+                <service.icon className="w-6 h-6 mx-auto text-ember" strokeWidth={1.5} />
                 <h3 className="font-serif text-2xl text-foreground">{service.title}</h3>
                 <p className="text-sm text-muted-foreground">{service.description}</p>
                 <div className="pt-2 border-t border-border">
@@ -129,7 +129,7 @@ const Home = () => {
             <h2 className="font-serif text-4xl md:text-5xl text-foreground">
               A shop built on <em className="font-script">craft</em>.
             </h2>
-            <div className="w-12 h-px bg-foreground mx-auto" />
+            <div className="w-12 h-px bg-ember mx-auto" />
           </div>
 
           <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
@@ -145,7 +145,7 @@ const Home = () => {
                 }`}
                 style={{ transitionDelay: `${i * 180}ms` }}
               >
-                <item.icon className="w-7 h-7 mx-auto text-foreground" strokeWidth={1.5} />
+                <item.icon className="w-7 h-7 mx-auto text-ember" strokeWidth={1.5} />
                 <h3 className="font-serif text-2xl text-foreground">{item.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.copy}</p>
               </div>
@@ -165,7 +165,7 @@ const Home = () => {
         }`}
       >
         <div className="container mx-auto px-6 text-center space-y-6">
-          <p className="text-xs tracking-[0.35em] uppercase text-background/60">Reserve</p>
+          <p className="text-xs tracking-[0.35em] uppercase text-ember-light">Reserve</p>
           <h2 className="font-serif text-4xl md:text-6xl">
             Ready for a <em className="font-script">magnificent</em> cut?
           </h2>
