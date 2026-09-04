@@ -1,5 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Instagram, Phone, Scissors } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const team = [
   {
