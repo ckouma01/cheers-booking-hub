@@ -53,6 +53,12 @@ export default {
         },
         ink: "hsl(var(--ink))",
         paper: "hsl(var(--paper))",
+        ember: {
+          DEFAULT: "hsl(var(--ember))",
+          light: "hsl(var(--ember-light))",
+          dark: "hsl(var(--ember-dark))",
+          foreground: "hsl(var(--ember-foreground))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

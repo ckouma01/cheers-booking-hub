@@ -49,6 +49,12 @@
     --paper: 37 22% 96%;
     --paper-warm: 37 20% 92%;
 
+    /* Secondary brand accent — burnt orange */
+    --ember: 18 78% 44%;
+    --ember-light: 22 82% 56%;
+    --ember-dark: 16 74% 34%;
+    --ember-foreground: 37 22% 97%;
+
     /* Editorial gradients */
     --gradient-hero: linear-gradient(180deg, hsl(37 22% 97%), hsl(37 18% 90%));
     --gradient-section: linear-gradient(180deg, hsl(37 22% 96%), hsl(37 22% 98%));
