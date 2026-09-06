@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Instagram, Phone, Scissors } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 import {
   Dialog,
   DialogContent,
@@ -60,6 +61,7 @@ const OurTeam = () => {
   const [visibleCards, setVisibleCards] = useState<Record<string, boolean>>({});
   const [activeBarber, setActiveBarber] = useState<(typeof team)[number] | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -92,15 +94,14 @@ const OurTeam = () => {
 
         <div className="container mx-auto px-6 py-28 text-center max-w-3xl relative z-10">
           <p className="text-xs tracking-[0.4em] uppercase text-ember mb-5">
-            The Craftsmen
+            {t("team.label")}
           </p>
           <h1 className="font-serif text-5xl md:text-7xl text-foreground leading-[0.95]">
-            Our <em className="font-script">Team</em>
+            {t("team.title.a")} <em className="font-script">{t("team.title.em")}</em> {t("team.title.b")}
           </h1>
           <div className="w-16 h-px bg-ember mx-auto mt-7 mb-6" />
           <p className="text-muted-foreground leading-relaxed max-w-xl mx-auto">
-            Two master barbers. One standard: precision, patience, and a cut
-            that feels as good as it looks.
+            {t("team.intro")}
           </p>
         </div>
       </section>
@@ -133,7 +134,7 @@ const OurTeam = () => {
                 <div className="relative overflow-hidden bg-[hsl(0_0%_26%)]">
                   <img
                     src={member.image}
-                    alt={`${member.name} — ${member.role} at MAGNIFICO Barbershop`}
+                    alt={`${member.name} — ${t("team.role.master")} at MAGNIFICO Barbershop`}
                     className="w-full h-[360px] object-cover transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0 grayscale"
                     loading="lazy"
                   />
@@ -153,10 +154,10 @@ const OurTeam = () => {
                     )}
                     <button
                       type="button"
-                      aria-label={`Call ${member.name}`}
+                      aria-label={`${t("team.call")} ${member.name}`}
                       disabled
                       className="w-10 h-10 grid place-items-center rounded-full bg-[hsl(37_22%_96%)] text-[hsl(0_0%_18%)] opacity-60 cursor-not-allowed"
-                      title="Phone number coming soon"
+                      title={t("team.phone.soon")}
                     >
                       <Phone className="w-4 h-4" strokeWidth={1.5} />
                     </button>
@@ -172,7 +173,7 @@ const OurTeam = () => {
                     <div className="flex items-center gap-3 text-ember-light">
                       <Scissors className="w-4 h-4" strokeWidth={1.5} />
                       <span className="text-[10px] tracking-[0.35em] uppercase">
-                        {member.role}
+                        {t("team.role.master")}
                       </span>
                     </div>
                     <h3 className="font-serif text-3xl text-[hsl(37_22%_96%)]">
@@ -186,7 +187,7 @@ const OurTeam = () => {
                       onClick={() => setActiveBarber(member)}
                       className="premium-button w-full bg-ember text-ember-foreground border-ember hover:bg-transparent hover:text-ember"
                     >
-                      Book with {member.name.split(" ")[0]}
+                      {t("team.book.with")} {member.name.split(" ")[0]}
                     </button>
                   </div>
                 </div>
@@ -208,10 +209,10 @@ const OurTeam = () => {
         </div>
         <div className="container mx-auto px-6 text-center space-y-6 max-w-2xl relative z-10">
           <h2 className="font-serif text-4xl md:text-5xl text-foreground">
-            Ready for a fresh cut?
+            {t("team.cta.title")}
           </h2>
           <p className="text-muted-foreground">
-            Pick your master barber and reserve your chair.
+            {t("team.cta.copy")}
           </p>
           <a
             href="https://magnifico.setmore.com/"
@@ -219,7 +220,7 @@ const OurTeam = () => {
             rel="noopener noreferrer"
             className="premium-button bg-ember text-ember-foreground border-ember hover:bg-transparent hover:text-ember"
           >
-            Book Appointment
+            {t("team.cta.button")}
           </a>
         </div>
       </section>
@@ -227,7 +228,7 @@ const OurTeam = () => {
         <DialogContent className="max-w-3xl p-0 overflow-hidden">
           <DialogHeader className="px-6 pt-6 pb-4">
             <DialogTitle className="font-serif text-2xl">
-              Book with {activeBarber?.name}
+              {t("team.book.with")} {activeBarber?.name}
             </DialogTitle>
           </DialogHeader>
           {activeBarber && (
