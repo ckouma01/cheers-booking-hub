@@ -11,8 +11,8 @@ import {
 const team = [
   {
     id: "panayiotis",
-    name: "Panayiotis Kyritsis",
-    role: "Master Barber",
+    nameEl: "Παναγιώτης Κυρίτσης",
+    nameEn: "Panayiotis Kyritsis",
     image: "/placeholder.svg",
     instagram: "https://www.instagram.com/magnifico_barber/",
     phone: "",
@@ -21,8 +21,8 @@ const team = [
   },
   {
     id: "stathis",
-    name: "Stathis Kyritsis",
-    role: "Master Barber",
+    nameEl: "Στάθης Κυρίτσης",
+    nameEn: "Stathis Kyritsis",
     image: "/placeholder.svg",
     instagram: "https://www.instagram.com/magnifico_barber/",
     phone: "",
@@ -61,7 +61,7 @@ const OurTeam = () => {
   const [visibleCards, setVisibleCards] = useState<Record<string, boolean>>({});
   const [activeBarber, setActiveBarber] = useState<(typeof team)[number] | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -112,7 +112,9 @@ const OurTeam = () => {
 
         <div className="container mx-auto px-6 max-w-5xl relative z-10">
           <div className="grid md:grid-cols-2 gap-10 lg:gap-14">
-            {team.map((member) => (
+            {team.map((member) => {
+              const memberName = lang === "el" ? member.nameEl : member.nameEn;
+              return (
               <article
                 key={member.id}
                 className={`
@@ -134,7 +136,7 @@ const OurTeam = () => {
                 <div className="relative overflow-hidden bg-[hsl(0_0%_26%)]">
                   <img
                     src={member.image}
-                    alt={`${member.name} — ${t("team.role.master")} at MAGNIFICO Barbershop`}
+                    alt={`${memberName} — ${t("team.role.master")} at MAGNIFICO Hair Salon`}
                     className="w-full h-[360px] object-cover transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0 grayscale"
                     loading="lazy"
                   />
@@ -146,7 +148,7 @@ const OurTeam = () => {
                         href={member.instagram}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={`${member.name} on Instagram`}
+                        aria-label={`${memberName} on Instagram`}
                         className="w-10 h-10 grid place-items-center rounded-full bg-[hsl(37_22%_96%)] text-[hsl(0_0%_18%)] hover:bg-[hsl(0_0%_8%)] hover:text-[hsl(37_22%_96%)] transition-colors"
                       >
                         <Instagram className="w-4 h-4" strokeWidth={1.5} />
@@ -154,7 +156,7 @@ const OurTeam = () => {
                     )}
                     <button
                       type="button"
-                      aria-label={`${t("team.call")} ${member.name}`}
+                      aria-label={`${t("team.call")} ${memberName}`}
                       disabled
                       className="w-10 h-10 grid place-items-center rounded-full bg-[hsl(37_22%_96%)] text-[hsl(0_0%_18%)] opacity-60 cursor-not-allowed"
                       title={t("team.phone.soon")}
@@ -177,7 +179,7 @@ const OurTeam = () => {
                       </span>
                     </div>
                     <h3 className="font-serif text-3xl text-[hsl(37_22%_96%)]">
-                      {member.name}
+                      {memberName}
                     </h3>
                   </div>
 
@@ -187,7 +189,7 @@ const OurTeam = () => {
                       onClick={() => setActiveBarber(member)}
                       className="premium-button w-full bg-ember text-ember-foreground border-ember hover:bg-transparent hover:text-ember"
                     >
-                      {t("team.book.with")} {member.name.split(" ")[0]}
+                      {t("team.book.with")} {memberName.split(" ")[0]}
                     </button>
                   </div>
                 </div>
@@ -197,7 +199,8 @@ const OurTeam = () => {
                   <CombTeeth className="h-full w-full justify-between" />
                 </div>
               </article>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -228,13 +231,13 @@ const OurTeam = () => {
         <DialogContent className="max-w-3xl p-0 overflow-hidden">
           <DialogHeader className="px-6 pt-6 pb-4">
             <DialogTitle className="font-serif text-2xl">
-              {t("team.book.with")} {activeBarber?.name}
+              {t("team.book.with")} {activeBarber && (lang === "el" ? activeBarber.nameEl : activeBarber.nameEn)}
             </DialogTitle>
           </DialogHeader>
           {activeBarber && (
             <iframe
               src={activeBarber.bookingUrl}
-              title={`Book with ${activeBarber.name}`}
+               title={`${t("team.book.with")} ${lang === "el" ? activeBarber.nameEl : activeBarber.nameEn}`}
               className="w-full h-[70vh] border-0"
             />
           )}
