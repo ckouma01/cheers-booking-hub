@@ -12,10 +12,7 @@ const Home = () => {
   const { t } = useLanguage();
 
   const services = [
-    { key: "home.service1", price: "20€", icon: Scissors },
-    { key: "home.service2", price: "18€", icon: Award },
-    { key: "home.service3", price: "30€", icon: Users },
-    { key: "home.service4", price: "10€", icon: Clock },
+    { key: "home.service1", price: "14€", icon: Scissors },
   ];
 
   return (
@@ -88,7 +85,7 @@ const Home = () => {
             <div className="w-12 h-px bg-ember mx-auto" />
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border max-w-6xl mx-auto border border-border">
+          <div className="max-w-md mx-auto border border-border">
             {services.map((service, index) => (
               <div
                 key={service.key}
@@ -102,6 +99,7 @@ const Home = () => {
                 <p className="text-sm text-muted-foreground">{t(`${service.key}.desc`)}</p>
                 <div className="pt-2 border-t border-border">
                   <p className="font-serif text-3xl text-foreground">{service.price}</p>
+                  <p className="mt-3 text-xs text-ember">{t(`${service.key}.note`)}</p>
                 </div>
               </div>
             ))}
