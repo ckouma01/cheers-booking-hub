@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-const galleryImages = [
-  { src: "/placeholder.svg", alt: "MAGNIFICO Barbershop gallery placeholder" },
-  { src: "/placeholder.svg", alt: "MAGNIFICO Barbershop gallery placeholder" },
-  { src: "/placeholder.svg", alt: "MAGNIFICO Barbershop gallery placeholder" },
-  { src: "/placeholder.svg", alt: "MAGNIFICO Barbershop gallery placeholder" },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
+
+const galleryImages = ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg"];
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const gallerySection = useScrollAnimation();
+  const { t } = useLanguage();
 
   return (
     <section
@@ -21,11 +19,11 @@ const Gallery = () => {
     >
       <div className="container mx-auto px-6">
         <div className="text-center mb-14 space-y-3">
-          <p className="text-xs tracking-[0.35em] uppercase text-muted-foreground">Portfolio</p>
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground">The Gallery</h2>
-          <div className="w-12 h-px bg-foreground mx-auto" />
+          <p className="text-xs tracking-[0.35em] uppercase text-ember">{t("gallery.label")}</p>
+          <h2 className="font-serif text-4xl md:text-5xl text-foreground">{t("gallery.title")}</h2>
+          <div className="w-12 h-px bg-ember mx-auto" />
           <p className="text-muted-foreground max-w-xl mx-auto">
-            A look inside the shop and a few of our favourite finishes.
+            {t("gallery.copy")}
           </p>
         </div>
 
@@ -33,15 +31,15 @@ const Gallery = () => {
           {galleryImages.map((image, index) => (
             <button
               key={index}
-              onClick={() => setSelectedImage(image.src)}
+              onClick={() => setSelectedImage(image)}
               className={`relative overflow-hidden group border border-border transition-all duration-700 ${
                 gallerySection.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
               style={{ transitionDelay: `${index * 120}ms` }}
             >
               <img
-                src={image.src}
-                alt={image.alt}
+                src={image}
+                alt={t("gallery.alt")}
                 className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
               />
