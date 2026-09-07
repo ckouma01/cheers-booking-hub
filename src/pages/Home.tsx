@@ -56,7 +56,7 @@ const Home = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
-              <Link to="/team">
+              <Link to="/team#team-grid">
                 <Button size="lg" className="w-full sm:w-auto tracking-[0.2em] uppercase text-xs px-8 bg-ember text-ember-foreground hover:bg-ember-dark border border-ember">
                   {t("home.cta.book")}
                 </Button>

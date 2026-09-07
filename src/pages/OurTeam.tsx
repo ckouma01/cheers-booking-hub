@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Instagram, Phone, Scissors } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 import {
   Dialog,
@@ -61,6 +62,7 @@ const OurTeam = () => {
   const [visibleCards, setVisibleCards] = useState<Record<string, boolean>>({});
   const [activeBarber, setActiveBarber] = useState<(typeof team)[number] | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const location = useLocation();
   const { t, lang } = useLanguage();
 
   useEffect(() => {
@@ -83,6 +85,15 @@ const OurTeam = () => {
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (location.hash === "#team-grid" && sectionRef.current) {
+      const el = sectionRef.current;
+      const navOffset = 80;
+      const top = el.getBoundingClientRect().top + window.scrollY - navOffset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+  }, [location]);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -107,7 +118,7 @@ const OurTeam = () => {
       </section>
 
       {/* Team grid */}
-      <section ref={sectionRef} className="py-24 border-b border-border relative">
+      <section id="team-grid" ref={sectionRef} className="py-24 border-b border-border relative">
         <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-b from-border/50 to-transparent" />
 
         <div className="container mx-auto px-6 max-w-5xl relative z-10">
