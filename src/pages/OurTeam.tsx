@@ -14,6 +14,8 @@ const team = [
     id: "panayiotis",
     nameEl: "Παναγιώτης Κυρίτσης",
     nameEn: "Panayiotis Kyritsis",
+    nameGenEl: "Παναγιώτη",
+    nameFullGenEl: "Παναγιώτη Κυρίτση",
     image: "/placeholder.svg",
     instagram: "https://www.instagram.com/magnifico_barber/",
     phone: "",
@@ -24,6 +26,8 @@ const team = [
     id: "stathis",
     nameEl: "Στάθης Κυρίτσης",
     nameEn: "Stathis Kyritsis",
+    nameGenEl: "Στάθη",
+    nameFullGenEl: "Στάθη Κυρίτση",
     image: "/placeholder.svg",
     instagram: "https://www.instagram.com/magnifico_barber/",
     phone: "",
@@ -200,7 +204,7 @@ const OurTeam = () => {
                       onClick={() => setActiveBarber(member)}
                       className="premium-button w-full bg-ember text-ember-foreground border-ember hover:bg-transparent hover:text-ember"
                     >
-                      {t("team.book.with")} {memberName.split(" ")[0]}
+                      {t("team.book.with")} {lang === "el" ? member.nameGenEl : member.nameEn.split(" ")[0]}
                     </button>
                   </div>
                 </div>
@@ -242,13 +246,13 @@ const OurTeam = () => {
         <DialogContent className="max-w-3xl p-0 overflow-hidden">
           <DialogHeader className="px-6 pt-6 pb-4">
             <DialogTitle className="font-serif text-2xl">
-              {t("team.book.with")} {activeBarber && (lang === "el" ? activeBarber.nameEl : activeBarber.nameEn)}
+              {t("team.book.with")} {activeBarber && (lang === "el" ? activeBarber.nameFullGenEl : activeBarber.nameEn)}
             </DialogTitle>
           </DialogHeader>
           {activeBarber && (
             <iframe
               src={activeBarber.bookingUrl}
-               title={`${t("team.book.with")} ${lang === "el" ? activeBarber.nameEl : activeBarber.nameEn}`}
+               title={`${t("team.book.with")} ${lang === "el" ? activeBarber.nameFullGenEl : activeBarber.nameEn}`}
               className="w-full h-[70vh] border-0"
             />
           )}
