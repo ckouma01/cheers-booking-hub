@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./i18n/LanguageContext";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
@@ -15,7 +15,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
-const USE_HASH_ROUTER = import.meta.env.BASE_URL !== "/";
+const BASENAME = "/cheers-booking-hub";
 
 const AppShell = () => (
   <div className="min-h-screen flex flex-col bg-background">
@@ -40,15 +40,9 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      {USE_HASH_ROUTER ? (
-        <HashRouter>
-          <AppShell />
-        </HashRouter>
-      ) : (
-        <BrowserRouter>
-          <AppShell />
-        </BrowserRouter>
-      )}
+      <BrowserRouter basename={BASENAME}>
+        <AppShell />
+      </BrowserRouter>
     </TooltipProvider>
     </LanguageProvider>
   </QueryClientProvider>
