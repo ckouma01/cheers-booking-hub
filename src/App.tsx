@@ -15,7 +15,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
-const BASENAME = "/cheers-booking-hub";
+const BASENAME = "/";
 
 const AppShell = () => (
   <div className="min-h-screen flex flex-col bg-background">
