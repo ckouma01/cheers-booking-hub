@@ -60,8 +60,8 @@ const Footer = () => {
               <Clock className="w-4 h-4" /> {t("footer.hours")}
             </h4>
             <ul className="space-y-1.5 text-sm text-muted-foreground">
-              <li><span className="text-foreground">{t("footer.hours.weekdays")}</span> · 9:00 – 19:00</li>
-              <li><span className="text-foreground">{t("footer.hours.saturday")}</span> · 9:00 – 15:00</li>
+              <li><span className="text-foreground">{t("footer.hours.weekdays")}</span> · {t("footer.hours.weekdays.time")}</li>
+              <li><span className="text-foreground">{t("footer.hours.saturday")}</span> · {t("footer.hours.saturday.time")}</li>
               <li><span className="text-foreground">{t("footer.hours.sunday")}</span> · {t("footer.hours.closed")}</li>
             </ul>
           </div>
