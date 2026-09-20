@@ -150,11 +150,11 @@ const OurTeam = () => {
                 </div>
 
                 {/* Image area */}
-<div className="relative overflow-hidden bg-[hsl(0_0%_26%)] aspect-[2/3]">
+<div className="relative overflow-hidden bg-[hsl(0_0%_26%)]">
   <img
     src={member.image}
     alt={`${memberName} — ${t("team.role.master")} at MAGNIFICO Hair Salon`}
-    className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0 grayscale"
+    className="w-full h-[420px] object-contain object-top transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0 grayscale"
     loading="lazy"
   />
 
