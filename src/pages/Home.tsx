@@ -1,15 +1,26 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Scissors, Clock, Award, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Gallery from "@/components/Gallery";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { galleryImages } from "@/lib/gallery-images";
 
 const Home = () => {
   const servicesSection = useScrollAnimation();
   const whyChooseSection = useScrollAnimation();
   const ctaSection = useScrollAnimation();
   const { t } = useLanguage();
+  const [heroImageIndex, setHeroImageIndex] = useState(0);
+
+  useEffect(() => {
+    const rotation = window.setInterval(() => {
+      setHeroImageIndex((current) => (current + 1) % galleryImages.length);
+    }, 5000);
+
+    return () => window.clearInterval(rotation);
+  }, []);
 
   const services = [
     { key: "home.service1", price: "14€", icon: Scissors },
@@ -18,8 +29,21 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="container mx-auto px-6 py-24 md:py-36">
+      <section className="relative overflow-hidden border-b border-border min-h-[calc(100vh-5rem)] flex items-center">
+        <div className="absolute inset-0" aria-hidden="true">
+          {galleryImages.map((image, index) => (
+            <img
+              key={image}
+              src={image}
+              alt=""
+              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 motion-reduce:transition-none ${
+                index === heroImageIndex ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          ))}
+          <div className="absolute inset-0 bg-background/75" />
+        </div>
+        <div className="container relative z-10 mx-auto px-6 py-24 md:py-36">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <a
               href="https://www.google.com/search?q=magnifico+hair+salon+nicosia"
