@@ -8,8 +8,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import panayiotisAsset from "@/assets/panayiotis.jpg.asset.json";
-import stathisAsset from "@/assets/stathis.jpg.asset.json";
+//import panayiotisAsset from "@/assets/panayiotis.jpg.asset.json";
+//import stathisAsset from "@/assets/stathis.jpg.asset.json";  i commented these out because i was out of credits and came by myself to make the pictures to load
 
 const team = [
   {
@@ -18,7 +18,7 @@ const team = [
     nameEn: "Panayiotis Kyritsis",
     nameGenEl: "Παναγιώτη",
     nameFullGenEl: "Παναγιώτη Κυρίτση",
-    image: panayiotisAsset.url,
+    image: "/panayiotis.jpg",
     instagram: "https://www.instagram.com/magnifico_barber/",
     phone: "",
     bookingUrl:
@@ -30,7 +30,7 @@ const team = [
     nameEn: "Stathis Kyritsis",
     nameGenEl: "Στάθη",
     nameFullGenEl: "Στάθη Κυρίτση",
-    image: stathisAsset.url,
+    image: "/stathis.jpg",
     instagram: "https://www.instagram.com/magnifico_barber/",
     phone: "",
     bookingUrl:
