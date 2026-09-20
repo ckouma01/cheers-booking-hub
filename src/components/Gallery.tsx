@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { useLanguage } from "@/i18n/LanguageContext";
-
-const galleryImages = ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg"];
+import { galleryImages } from "@/lib/gallery-images";
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -30,6 +29,7 @@ const Gallery = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
           {galleryImages.map((image, index) => (
             <button
+              type="button"
               key={index}
               onClick={() => setSelectedImage(image)}
               className={`relative overflow-hidden group border border-border transition-all duration-700 ${
