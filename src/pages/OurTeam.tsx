@@ -30,7 +30,7 @@ const team = [
     nameEn: "Stathis Kyritsis",
     nameGenEl: "Στάθη",
     nameFullGenEl: "Στάθη Κυρίτση",
-    image: "/placeholder.svg",
+    image: stathisAsset.url,
     instagram: "https://www.instagram.com/magnifico_barber/",
     phone: "",
     bookingUrl:
