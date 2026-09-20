@@ -154,7 +154,7 @@ const OurTeam = () => {
                   <img
                     src={member.image}
                     alt={`${memberName} — ${t("team.role.master")} at MAGNIFICO Hair Salon`}
-                    className="w-full h-[360px] object-cover transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0 grayscale"
+                    className="w-full h-[420px] object-contain object-top transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0 grayscale"
                     loading="lazy"
                   />
 
