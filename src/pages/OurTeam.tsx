@@ -8,6 +8,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import panayiotisAsset from "@/assets/panayiotis.jpg.asset.json";
+import stathisAsset from "@/assets/stathis.jpg.asset.json";
 
 const team = [
   {
@@ -16,7 +18,7 @@ const team = [
     nameEn: "Panayiotis Kyritsis",
     nameGenEl: "Παναγιώτη",
     nameFullGenEl: "Παναγιώτη Κυρίτση",
-    image: "/placeholder.svg",
+    image: panayiotisAsset.url,
     instagram: "https://www.instagram.com/magnifico_barber/",
     phone: "",
     bookingUrl:
